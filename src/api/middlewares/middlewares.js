@@ -13,7 +13,17 @@ const validateToken = async (req, res, next) => {
 const validateAuthParameters = async (req, res, next) => {
     try {
         const regExCorreo = new RegExp("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
+        const regExName = new RegExp("^[a-zA-Z]+$");
         const { email, password } = req.body;
+        const { firstName } = req.body || null;
+
+        if(firstName != null) {
+            if(!regExName.test(firstName)) {
+                return res.status(401).json({
+                    message: "[!] Invalid name"
+                });
+            }
+        }
     
         if(!email || !password) {
             return res.status(401).json({
