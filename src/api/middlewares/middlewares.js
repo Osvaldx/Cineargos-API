@@ -1,12 +1,32 @@
-const validateToken = async (req, res, next) => {
-    const token = req.headers["authorization"];
+import JWT from "jsonwebtoken";
+import environments from "../config/environments.js";
 
-    if(!token) {
-        res.status(401).json({
-            message: "You don´t have access or the token is expired"
-        })
-    } else {
+const validateToken = async (req, res, next) => {
+    try {
+        const token = req.headers["authorization"];
+    
+        if(!token) {
+            res.status(401).json({
+                message: "You don´t have access or the token is expired"
+            })
+        }
+        
+        try {
+            const decoded = JWT.verify(token, environments.secret_key);
+            req.user = decoded;
+            
+        } catch(error) {
+            return res.status(401).json({
+                message: "Invalid token or expired"
+            })
+        }
+    
         next();
+    } catch(error) {
+        console.log(`[!] ERROR: ${error}`);
+        return res.status(500).json({
+            message: "[!] ERROR INTERNO DEL SERVIDOR"
+        })
     }
 }
 
@@ -40,6 +60,9 @@ const validateAuthParameters = async (req, res, next) => {
         next();
     } catch(error) {
         console.log(`[!] ERROR: ${error}`);
+        return res.status(500).json({
+            message: "[!] ERROR INTERNO DEL SERVIDOR"
+        })
     }
 }
 
