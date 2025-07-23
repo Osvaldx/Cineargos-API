@@ -68,9 +68,9 @@ const validateAuthParameters = async (req, res, next) => {
 
 const validateMovieID = async (req, res, next) => {
     try {
-        const {id_movie} = req.params;
+        const { id } = req.params;
 
-        if(!id_movie || isNaN(id_movie)) {
+        if(!id || isNaN(id) || Number(id) <= 0) {
             return res.status(400).json({
                 message: "[!] Invalid movie ID"
             });
