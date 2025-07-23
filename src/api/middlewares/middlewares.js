@@ -66,7 +66,78 @@ const validateAuthParameters = async (req, res, next) => {
     }
 }
 
+const validateMovieID = async (req, res, next) => {
+    try {
+        const {id_movie} = req.params;
+
+        if(!id_movie || isNaN(id_movie)) {
+            return res.status(400).json({
+                message: "[!] Invalid movie ID"
+            });
+        }
+
+        next();
+    } catch (error) {
+        console.log(`[!] ERROR: ${error}`);
+        return res.status(500).json({
+            message: "[!] ERROR INTERNO DEL SERVIDOR"
+        })
+    }
+}
+
+const validateMovieParameters = async(req, res, next) => {
+    const { title, genre, releaseYear, director, image, isAvailable } = req.body;
+    const regExTitle = new RegExp("^[a-zA-Z0-9 ]+$");
+    const regExGenreAndDirector = new RegExp("^[a-zA-Z ]+$");
+    const regExYear = new RegExp("^(19|20)\\d{2}$");
+    const regExImage = new RegExp("^(http|https)://.+\\.(jpg|jpeg|png|gif)$", "i");
+
+    if(!title || !genre || !releaseYear || !director || !image || isAvailable === undefined) {
+        return res.status(400).json({
+            message: "[!] All fields are required"
+        });
+    }
+
+    if(!regExTitle.test(title)) {
+        return res.status(400).json({
+            message: "[!] Invalid title format"
+        });
+    }
+
+    if(!regExGenreAndDirector.test(genre)) {
+        return res.status(400).json({
+            message: "[!] Invalid genre format"
+        });
+    }
+
+    if(!regExGenreAndDirector.test(director)) {
+        return res.status(400).json({
+            message: "[!] Invalid director format"
+        });
+    }
+
+    if(!regExYear.test(releaseYear)) {
+        return res.status(400).json({
+            message: "[!] Invalid year format"
+        });
+    }
+
+    if(!regExImage.test(image)) {
+        return res.status(400).json({
+            message: "[!] Invalid URL format"
+        });
+    }
+
+    if(isAvailable === undefined) {
+        return res.status(400).json({
+            message: "[!] Invalid type Available format"
+        });
+    }
+}
+
 export default {
     validateToken,
-    validateAuthParameters
+    validateAuthParameters,
+    validateMovieID,
+    validateMovieParameters
 }
