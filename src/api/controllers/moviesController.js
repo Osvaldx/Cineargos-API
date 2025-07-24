@@ -46,3 +46,27 @@ export const getMovieID = async(req, res) => {
         });
     }
 }
+
+export const addMovie = async(req, res) => {
+    try {
+        const { title, genre, releaseYear, director, image, isAvailable } = req.body;
+
+        const [rows] = await moviesDB.addMovieDB(title, genre, releaseYear, director, image, isAvailable);
+
+        if(rows.affectedRows === 0) {
+            return res.status(400).json({
+                message: "[!] NO SE PUDO AGREGAR LA PELICULA"
+            });
+        }
+
+        return res.status(200).json({
+            message: "[+] PELICULA AGREGADA CON EXITO!"
+        });
+
+    } catch (error) {
+        console.log(`[!] MOVIES: ${error}`)
+        return res.status(500).json({
+            message: "[!] ERROR INTERNO DEL SERVIDOR"
+        });
+    }
+}
