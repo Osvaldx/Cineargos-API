@@ -5,6 +5,7 @@ CREATE TABLE Cineargos.users (
     email VARCHAR(40) NOT NULL,
     phone TEXT,
     password VARCHAR(255) NOT NULL,
+    role VARCHAR(30) NOT NULL DEFAULT "user",
     PRIMARY KEY(id_user),
     UNIQUE (email)
 );
@@ -12,10 +13,10 @@ CREATE TABLE Cineargos.users (
 CREATE TABLE Cineargos.movies (
     id_movie INT NOT NULL AUTO_INCREMENT,
     title VARCHAR(100) NOT NULL,
-    genre VARCHAR(50),
-    releaseYear INT,
-    director VARCHAR(50),
-    image VARCHAR(500),
+    genre VARCHAR(50) NOT NULL,
+    releaseYear INT NOT NULL,
+    director VARCHAR(50) NOT NULL,
+    image VARCHAR(500) NOT NULL,
     isAvailable BOOLEAN NOT NULL DEFAULT TRUE,
     PRIMARY KEY(id_movie)
 );
