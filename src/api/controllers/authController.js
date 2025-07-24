@@ -23,7 +23,7 @@ const login = async (req, res) => {
             });
         }
         
-        const tokenJWT = JWT.sign({id_user: rows[0].id_user, email}, environments.secret_key, {expiresIn: "15m"});
+        const tokenJWT = JWT.sign({id_user: rows[0].id_user, email, role: rows[0].role}, environments.secret_key, {expiresIn: "15m"});
 
         res.status(200).json({
             token: tokenJWT
