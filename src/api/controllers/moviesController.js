@@ -6,19 +6,19 @@ export const getAllMovies = async(req, res) => {
 
         if(rows.length < 1) {
             return res.status(404).json({
-                message: "[!] NO HAY PELICULAS DISPONIBLES"
+                message: "[!] NO MOVIES AVAILABLE"
             });
         }
 
         return res.status(200).json({
-            message: "[+] PELICULAS DISPONIBLES",
+            message: "[+] MOVIES AVAILABLE",
             payload: rows
         });
 
     } catch (error) {
         console.log(`[!] MOVIES: ${error}`)
         return res.status(500).json({
-            message: "[!] ERROR INTERNO DEL SERVIDOR"
+            message: "[!] INTERNAL SERVER ERROR"
         });
     }
 }
@@ -30,19 +30,19 @@ export const getMovieID = async(req, res) => {
 
         if(rows.length < 1) {
             return res.status(404).json({
-                message: "[!] NO SE ENCONTRO LA PELICULA CON ESE ID"
+                message: "[!] THE MOVIE WAS NOT FOUND WITH THAT ID"
             });
         }
 
         return res.status(200).json({
-            message: "[+] PELICULA ENCONTRADA!",
+            message: "[+] MOVIE FOUND!",
             payload: rows
         });
 
     } catch (error) {
         console.log(`[!] MOVIES: ${error}`)
         return res.status(500).json({
-            message: "[!] ERROR INTERNO DEL SERVIDOR"
+            message: "[!] INTERNAL SERVER ERROR"
         });
     }
 }
@@ -55,18 +55,18 @@ export const addMovie = async(req, res) => {
 
         if(rows.affectedRows === 0) {
             return res.status(400).json({
-                message: "[!] NO SE PUDO AGREGAR LA PELICULA"
+                message: "[!] COULD NOT ADD THE MOVIE"
             });
         }
 
         return res.status(200).json({
-            message: "[+] PELICULA AGREGADA CON EXITO!"
+            message: "[+] MOVIE SUCCESSFULLY ADDED!"
         });
 
     } catch (error) {
         console.log(`[!] MOVIES: ${error}`)
         return res.status(500).json({
-            message: "[!] ERROR INTERNO DEL SERVIDOR"
+            message: "[!] INTERNAL SERVER ERROR"
         });
     }
 }
@@ -80,17 +80,17 @@ export const updateMovie = async(req, res) => {
 
         if(rows.affectedRows === 0) {
             return res.status(400).json({
-                message: "[!] NO SE PUDO ACTUALIZAR LA PELICULA"
+                message: "[!] COULD NOT UPDATE THE MOVIE"
             });
         }
 
         return res.status(200).json({
-            message: "[+] PELICULA ACTUALIZADA CON EXITO!"
+            message: "[+] MOVIE UPDATED WITH SUCCESS!"
         });
     } catch (error) {
         console.log(`[!] MOVIES: ${error}`)
         return res.status(500).json({
-            message: "[!] ERROR INTERNO DEL SERVIDOR"
+            message: "[!] INTERNAL SERVER ERROR"
         });
     }
 }

@@ -25,7 +25,7 @@ const validateToken = async (req, res, next) => {
     } catch(error) {
         console.log(`[!] ERROR: ${error}`);
         return res.status(500).json({
-            message: "[!] ERROR INTERNO DEL SERVIDOR"
+            message: "[!] INTERNAL SERVER ERROR"
         })
     }
 }
@@ -71,7 +71,7 @@ const validateAuthParameters = async (req, res, next) => {
     } catch(error) {
         console.log(`[!] ERROR: ${error}`);
         return res.status(500).json({
-            message: "[!] ERROR INTERNO DEL SERVIDOR"
+            message: "[!] INTERNAL SERVER ERROR"
         })
     }
 }
@@ -90,7 +90,7 @@ const validateMovieID = async (req, res, next) => {
     } catch (error) {
         console.log(`[!] ERROR: ${error}`);
         return res.status(500).json({
-            message: "[!] ERROR INTERNO DEL SERVIDOR"
+            message: "[!] INTERNAL SERVER ERROR"
         })
     }
 }
@@ -149,7 +149,7 @@ const validateMovieParameters = async(req, res, next) => {
     } catch (error) {
         console.log(`[!] ERROR: ${error}`);
         return res.status(500).json({
-            message: "[!] ERROR INTERNO DEL SERVIDOR"
+            message: "[!] INTERNAL SERVER ERROR"
         })
     }
 }

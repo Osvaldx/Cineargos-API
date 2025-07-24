@@ -32,7 +32,7 @@ const login = async (req, res) => {
     } catch(error) {
         console.log(`[!] ERROR: ${error}`)
         res.status(500).json({
-            message: `[!] ERROR INTERNO DEL SERVIDOR`
+            message: `[!] INTERNAL SERVER ERROR`
         });
     }
 }
@@ -49,24 +49,24 @@ const register = async (req, res) => {
             [rows] = await Auth.registerDB(firstName,email,passwordEncrypted);
         } catch(error) {
             return res.status(409).json({
-                message: "[!] Ya existe una cuenta con ese email"
+                message: "[!] An account with this email already exists"
             })
         }
 
         if(rows.affectedRows > 0) {
             return res.status(200).json({
-                message: "[+] Cuenta registrada con exito!"
+                message: "[+] Account successfully registered!"
             });
         } else {
             return res.status(500).json({
-                message: "[!] No se pudo registrar la cuenta. Intente nuevamente."
+                message: "[!] The account could not be registered. Please try again."
             });
         }
 
     } catch(error) {
         console.log(`[!] ERROR: ${error}`)
         res.status(500).json({
-            message: `[!] ERROR INTERNO DEL SERVIDOR`
+            message: `[!] INTERNAL SERVER ERROR`
         });
     }
 }
