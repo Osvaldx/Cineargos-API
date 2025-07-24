@@ -12,10 +12,10 @@ const getMovieIDDB = (id) => {
     return connection.query(sql, [id]);
 }
 
-const addMovieDB = (title, image, isAvailable) => {
-    let sql = "INSERT INTO movies (title, image, isAvailable) VALUES (?,?,?);"
+const addMovieDB = (title, genre, releaseYear, director, image, isAvailable) => {
+    let sql = "INSERT INTO movies (title, genre, releaseYear, director, image, isAvailable) VALUES (?,?,?,?,?,?);"
 
-    return connection.query(sql, [title,image,isAvailable]);
+    return connection.query(sql, [title,genre,releaseYear,director,image,isAvailable]);
 }
 
 const modifiedMovieDB = (id, title, genre, releaseYear, director, image, isAvailable) => {
