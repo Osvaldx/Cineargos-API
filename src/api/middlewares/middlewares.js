@@ -30,6 +30,16 @@ const validateToken = async (req, res, next) => {
     }
 }
 
+const isAdmin = async(req, res, next) => {
+    if(req.user && req.user.role == "admin") {
+        return next();
+    }
+
+    return res.status(403).json({
+        message: "[!] Access Denied"
+    })
+}
+
 const validateAuthParameters = async (req, res, next) => {
     try {
         const regExCorreo = new RegExp("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
@@ -146,6 +156,7 @@ const validateMovieParameters = async(req, res, next) => {
 
 export default {
     validateToken,
+    isAdmin,
     validateAuthParameters,
     validateMovieID,
     validateMovieParameters
