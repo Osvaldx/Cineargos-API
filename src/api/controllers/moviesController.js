@@ -94,3 +94,26 @@ export const updateMovie = async(req, res) => {
         });
     }
 }
+
+export const deleteMovie = async(req, res) => {
+    try {
+        const { id } = req.params;
+
+        const [rows] = await moviesDB.deleteMovieDB(id);
+
+        if(rows.affectedRows === 0) {
+            return res.status(400).json({
+                message: `[!] MOVIE NOT FOUND OR DOES NOT EXITS`
+            })
+        }
+
+        return res.status(200).json({
+            message: "[+] MOVIE DELETED"
+        })
+    } catch (error) {
+        console.log(`[!] MOVIES: ${error}`)
+        return res.status(500).json({
+            message: "[!] INTERNAL SERVER ERROR"
+        });
+    }
+}
