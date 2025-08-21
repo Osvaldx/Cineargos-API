@@ -76,13 +76,13 @@ const validateAuthParameters = async (req, res, next) => {
     }
 }
 
-const validateMovieID = async (req, res, next) => {
+const validateID = async (req, res, next) => {
     try {
         const { id } = req.params;
 
         if(!id || isNaN(id) || Number(id) <= 0) {
             return res.status(400).json({
-                message: "[!] Invalid movie ID"
+                message: "[!] Invalid ID"
             });
         }
 
@@ -158,6 +158,6 @@ export default {
     validateToken,
     isAdmin,
     validateAuthParameters,
-    validateMovieID,
+    validateID,
     validateMovieParameters
 }
