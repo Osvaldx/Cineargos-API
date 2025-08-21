@@ -5,9 +5,9 @@ import { getAllMovies, getMovieID, addMovie, updateMovie, deleteMovie } from "..
 const router = Router();
 
 router.get("/movies", getAllMovies);
-router.get("/movies/:id", middlewares.validateMovieID, getMovieID);
+router.get("/movies/:id", middlewares.validateID, getMovieID);
 router.post("/movies/add", middlewares.validateToken, middlewares.isAdmin, middlewares.validateMovieParameters, addMovie);
-router.put("/movies/update/:id", middlewares.validateToken, middlewares.isAdmin, middlewares.validateMovieID, middlewares.validateMovieParameters, updateMovie);
-router.delete("/movies/delete/:id", middlewares.validateToken, middlewares.isAdmin, middlewares.validateMovieID, deleteMovie);
+router.put("/movies/update/:id", middlewares.validateToken, middlewares.isAdmin, middlewares.validateID, middlewares.validateMovieParameters, updateMovie);
+router.delete("/movies/delete/:id", middlewares.validateToken, middlewares.isAdmin, middlewares.validateID, deleteMovie);
 
 export default router;
