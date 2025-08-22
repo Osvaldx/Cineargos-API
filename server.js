@@ -2,7 +2,7 @@ import express from "express";
 import cors from "express";
 import environments from "./src/api/config/environments.js";
 import morgan from "morgan";
-import { AuthRouter, MoviesRouter } from "./src/api/routes/index.js";
+import { AuthRouter, MoviesRouter, UsersRouter } from "./src/api/routes/index.js";
 
 const app = express();
 const PORT = environments.port;
