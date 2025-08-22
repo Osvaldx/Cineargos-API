@@ -24,3 +24,11 @@ const deleteUserDB = (id) => {
     const sql = "DELETE FROM users WHERE (id_user = ?);";
     return connection.query(sql, [id]);
 }
+
+export default {
+    getAllUsersDB,
+    getUserDB,
+    addUserDB,
+    updateUserDB,
+    deleteUserDB
+}
