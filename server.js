@@ -13,7 +13,7 @@ app.use(morgan("dev"));
 
 app.use("/api", AuthRouter);
 app.use("/api", MoviesRouter);
-// app.use("/api", UsersRouter);
+app.use("/api", UsersRouter);
 
 app.listen(PORT, () => {
     console.log(`Server corriendo en: http://localhost:${PORT}/`);
