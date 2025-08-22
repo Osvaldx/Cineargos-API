@@ -55,6 +55,83 @@ Implementa **autenticación JWT**, encriptación de contraseñas con **bcrypt** 
 │   └── GET /:id/seats
 ```
 ---
+# 📌 Resumen de ENDPOINTS
+
+### 🔐 Auth
+
+| Método | Endpoint             | Descripción                   |
+|--------|----------------------|-------------------------------|
+| POST   | `/api/auth/register` | Registrar un nuevo usuario    |
+| POST   | `/api/auth/login`    | Iniciar sesión y obtener token|
+
+---
+
+### 🎬 Películas
+
+| Método | Endpoint          | Descripción                               |
+|--------|-------------------|-------------------------------------------|
+| GET    | `/api/movies/`    | Obtener todas las películas (público)     |
+| GET    | `/api/movies/:id` | Obtener película por ID (público)         |
+| POST   | `/api/movies/`    | Crear una nueva película (requiere JWT)   |
+| PUT    | `/api/movies/:id` | Actualizar una película (requiere JWT)    |
+| DELETE | `/api/movies/:id` | Eliminar una película (requiere JWT)      |
+
+---
+
+### 👤 Usuarios
+
+| Método | Endpoint          | Descripción                                        |
+|--------|-------------------|----------------------------------------------------|
+| GET    | `/api/users/`     | Obtener todos los usuarios (admin – requiere JWT) |
+| GET    | `/api/users/:id`  | Obtener usuario por ID (admin – requiere JWT)     |
+| POST   | `/api/users/`     | Crear nuevo usuario (admin – requiere JWT)        |
+| PUT    | `/api/users/:id`  | Actualizar usuario (admin – requiere JWT)         |
+| DELETE | `/api/users/:id`  | Eliminar usuario (admin – requiere JWT)           |
+
+---
+
+### 🛡️ Administradores
+
+| Método | Endpoint           | Descripción                                           |
+|--------|--------------------|-------------------------------------------------------|
+| GET    | `/api/admins/`     | Obtener todos los administradores (admin – requiere JWT) |
+| GET    | `/api/admins/:id`  | Obtener administrador por ID (admin – requiere JWT)  |
+| POST   | `/api/admins/`     | Crear nuevo administrador (admin – requiere JWT)     |
+| PUT    | `/api/admins/:id`  | Actualizar administrador (admin – requiere JWT)      |
+| DELETE | `/api/admins/:id`  | Eliminar administrador (admin – requiere JWT)        |
+
+---
+
+### 📅 Reservas
+
+| Método | Endpoint                      | Descripción                                     |
+|--------|-------------------------------|-------------------------------------------------|
+| GET    | `/api/bookings/`              | Obtener todas las reservas (admin – requiere JWT) |
+| GET    | `/api/bookings/:id`           | Obtener reserva por ID (requiere JWT)           |
+| GET    | `/api/bookings/user/:id_user` | Obtener reservas de un usuario (requiere JWT)   |
+| POST   | `/api/bookings/`              | Crear nueva reserva (requiere JWT)              |
+| DELETE | `/api/bookings/:id`           | Eliminar reserva (admin o dueño – requiere JWT) |
+
+---
+
+### 🎟️ Tickets
+
+| Método | Endpoint                          | Descripción                                |
+|--------|-----------------------------------|--------------------------------------------|
+| GET    | `/api/tickets/booking/:id_booking`| Obtener tickets de una reserva (requiere JWT) |
+| GET    | `/api/tickets/:id_ticket`         | Obtener ticket por ID (requiere JWT)       |
+
+---
+
+### ⏱️ Funciones
+
+| Método | Endpoint                   | Descripción                          |
+|--------|----------------------------|--------------------------------------|
+| GET    | `/api/functions/`          | Obtener todas las funciones          |
+| GET    | `/api/functions/:id`       | Obtener función por ID               |
+| GET    | `/api/functions/:id/seats` | Obtener asientos de una función      |
+"""
+---
 
 ## 🛡️ Middlewares de validación
 
